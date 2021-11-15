@@ -3,6 +3,8 @@ package com.kontrol.fruit.model;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -15,6 +17,8 @@ public class Fruit extends PanacheEntityBase {
     @NotNull
     public Long id;
 
+    @NotBlank
+    @NotEmpty
     public String name;
 
     public String genus;
@@ -24,6 +28,7 @@ public class Fruit extends PanacheEntityBase {
     @Column(name = "\"order\"") //escape to prevent being treated as sql keyword 'order'
     public String order;
 
+    @NotNull
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "carbohydrates", column = @Column(name = "carbohydrates", table = "fruit_nutrition")),
